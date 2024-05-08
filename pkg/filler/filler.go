@@ -111,7 +111,7 @@ func fillExercises(count int) []model.Exercise {
 
 func fillPictures(count int) []string {
 	var setOfPictures []string
-	for i := 0; i < count; i++ {
+	for i := 1; i <= count; i++ {
 		setOfPictures = append(setOfPictures, fmt.Sprintf("http://picture_%d.png", i))
 	}
 
