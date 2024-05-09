@@ -26,16 +26,20 @@ Time to create JSON: 11.427827523s      Time to create Protobuff: 5.289707675s
 Ультра[75]:             Размер формата JSON: 1252.037 мегабайт          Размер формата Protobuff: 535.690 мегабайт
 */
 
+//func main() {
+//
+//	printSizes("", 0)
+//	printSizes("", 1)
+//	printSizes("", 5)
+//	printSizes("", 11)
+//	printSizes("", 31)
+//	printSizes("Мега", 55)
+//	printSizes("Ультра", 75)
+//
+//}
+
 func main() {
-
-	printSizes("", 0)
-	printSizes("", 1)
-	printSizes("", 5)
-	printSizes("", 11)
-	printSizes("", 31)
-	printSizes("Меге", 55)
-	printSizes("Ультра", 75)
-
+	printSize(101)
 }
 
 func getSizeInFormattedString(byteSize int64) string {
@@ -47,6 +51,24 @@ func getSizeInFormattedString(byteSize int64) string {
 	} else {
 		return fmt.Sprintf("%.3f мегабайт\t", float64(byteSize)/(1024*1024))
 	}
+}
+
+func printSize(size int) {
+	fmt.Printf("COUNT;\tJSON;\tPROTOBUF;\n")
+	for i := 0; i <= size; i++ {
+		sizePb, err := fillerPb.FindByteSizeOfProto(fillerPb.CreateOwnSetOfPrograms(i))
+		if err != nil {
+			log.Fatal(err)
+		}
+
+		sizeJSON, err := filler.FindByteSizeOfJson(filler.CreateOwnSetOfPrograms(i))
+		if err != nil {
+			log.Fatal(err)
+		}
+
+		fmt.Printf("%d;\t%d;\t%d;\n", i, sizeJSON, sizePb)
+	}
+
 }
 
 func printSizes(typeName string, count int) {

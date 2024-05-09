@@ -4,25 +4,9 @@ package program_v1;
 
 option go_package = "github.com/kirillmc/data_filler/pkg/program_v1;program_v1";
 
-message Set{
-  int64 id = 1;
-  int64 quantity = 2;
-  double weight = 3;
-}
 
-message Exercise{
-  int64 id = 1;
-  string exercise_name = 2;
-  repeated string pictures = 3;
-  string description = 4;
-  repeated Set sets = 5;
-}
-
-message TrainDay{
-  int64 id = 1;
-  string day_name = 2;
-  string description = 3;
-  repeated Exercise exercises = 4;
+message TrainPrograms{
+  repeated TrainProgram train_programs = 1;
 }
 
 message TrainProgram{
@@ -33,6 +17,25 @@ message TrainProgram{
   repeated TrainDay train_days = 5;
 }
 
-message TrainPrograms{
-  repeated TrainProgram train_programs = 1;
+message TrainDay{
+  int64 id = 1;
+  string day_name = 2;
+  string description = 3;
+  repeated Exercise exercises = 4;
 }
+
+message Exercise{
+  int64 id = 1;
+  string exercise_name = 2;
+  repeated string pictures = 3;
+  string description = 4;
+  repeated Set sets = 5;
+}
+
+message Set{
+  int64 id = 1;
+  int64 quantity = 2;
+  double weight = 3;
+}
+
+
